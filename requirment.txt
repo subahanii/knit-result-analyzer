@@ -1,0 +1,7 @@
+asgiref==3.2.3
+Django==3.0.3
+mysqlclient==1.4.6
+pytz==2019.3
+selenium==3.141.0
+sqlparse==0.3.1
+urllib3==1.25.8

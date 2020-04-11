@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>scrap the world</title>
+</head>
+<script type="text/javascript">
+	alert("{{ msg }}")
+</script>
+<body>
+<a href="update">Update</a>	<br>
+<a href="marks_update">Marks Update</a>
+{% for i in data %}
+Roll:{{i.roll}}<br>
+semester:{{i.semester}}<br>
+Obtain:{{i.obtain_marks}}<br>
+Total:{{i.total_marks}}<br>
+
+{% endfor %}
+<h1>Hello babe!!!!!</h1>
+</body>
+</html>
