@@ -1,3 +1,3 @@
 # knit-result-analyzer
 
-Link- [knitresult.ml](http://www.knitresult.ml)
+Link- [knitresult.ml](http://knitresult.ml)
