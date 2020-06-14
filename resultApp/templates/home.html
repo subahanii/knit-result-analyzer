@@ -1,0 +1,217 @@
+{%    extends 'main.html'    %}
+
+
+{%    block content   %}
+
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;">
+				<div class="card-header">
+					<h5  class="card-title">Check Marks with roll number or name</h5>
+					
+				</div>
+				<div class="card-body" >
+				<form class="form-inline" method="post" action="../fullResult">
+				 	{% csrf_token %}
+				 
+				  <div class="form-group mx-sm-3 mb-2" style="width: 75%">
+				    
+				    <input type="number" class="form-control" value='{{studentDetail.roll}}' id="inputPassword2" name="rollOrName" placeholder="Enter roll number or name.... !  (178204)" style="width: 100%">
+				  </div>
+				  <button type="submit" class="btn btn-primary mb-2">Check Result</button>
+				</form>
+				<p style="color: red">{{msg}}</p>
+				
+
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;">
+				<div class="card-header">
+					<h5  class="card-title">See Class Rank</h5>
+					
+				</div>
+				<div class="card-body" >
+				<form class="form-inline" method="post" action="../classRank">
+				 	{% csrf_token %}
+				 
+				  <div class="form-group mx-sm-3 mb-2" style="width: 25%">
+				 
+				    <select class="form-control" name="batch"  required >
+				    	<option value="">---SELECT Batch---</option>
+				    	<option value="2020">Batch 2020</option>
+				    	<option value="2021">Batch 2021</option>
+				    	<option value="2022">Batch 2022</option>
+				    	<option value="2023">Batch 2023</option>
+				    </select>
+				  </div>
+
+				  <div class="form-group mx-sm-3 mb-2" style="width: 25%">
+				 
+				    <select class="form-control" name="branch" required>
+				    	<option value="">---SELECT Branch---</option>
+				    	<option value="CE">CIVIL Engg.</option>
+				    	<option value="CSE">COMPUTER Engg.</option>
+				    	<option value="EL">ELECTRONIC Engg.</option>
+				    	<option value="EE">ELECTRICAL Engg.</option>
+				    	<option value="ME">MACHENICAL Engg.</option>
+				    	<option value="IT">INFORMATION Engg.</option>
+				    </select>
+				  </div>
+
+				  
+				  <div class="form-group mx-sm-3 mb-2" style="width: 25%">
+				 
+				    <select class="form-control" name="year" required>
+				    	<option value="">---SELECT Year---</option>
+				    	<option value="1 - 2">1st Year</option>
+				    	<option value="3 - 4">2ed Year</option>
+				    	<option value="5 - 6">3rd Year</option>
+				    	<option value="7 - 8">Final Year</option>
+				    </select>
+				  </div>
+
+				  
+				  <button type="submit" class="btn btn-primary mb-2">Check Result</button>
+				</form>
+				<p style="color: red">{{msg}}</p>
+				
+
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+
+	{%  for topersDetail in allTopersDetail %}
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;">
+				<div class="card-header">
+					<h5  class="card-title">Topers List {{topersDetail.batch}} </h5>
+					
+				</div>
+				<div class="card-body" >
+				{%  for i in topersDetail %}
+					<h6>{{i.branch}} Batch({{i.batch}})</h6>
+					<div class="row">
+						<div class="col">
+							<div class="col-md">
+								<a href="../fullResult/{{i.roll1}}" target="_blank">
+									<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #09bcc1;">
+										<div class="card-header">
+											<h5  class="card-title">1st Position ({{i.roll1}})</h5>
+											
+										</div>
+										<div class="card-body" style="height: 100px">	
+										<h6>Name - {{i.name1}}</h6>
+										<h6>Father - {{i.fname1}}</h6>
+										<h6>Percentage/CGPA - {{i.percent1}}</h6>						
+					
+
+										</div>
+							 
+								</div>
+							</a>
+							</div>
+
+						</div>
+
+
+						<div class="col">
+							<div class="col-md">
+								<a href="../fullResult/{{i.roll2}}" target="_blank">
+								<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #07a4a9;">
+										<div class="card-header">
+											<h5  class="card-title">2nd Position ({{i.roll2}})</h5>
+											
+										</div>
+										<div class="card-body" style="height: 100px">	
+										<h6>Name - {{i.name2}}</h6>
+										<h6>Father - {{i.fname2}}</h6>
+										<h6>Percentage/CGPA - {{i.percent2}}</h6>								
+					
+
+										</div>
+							 
+								</div>
+							</a>
+							</div>
+						</div>
+
+
+						<div class="col">
+							<div class="col-md">
+								<a href="../fullResult/{{i.roll3}}" target="_blank">
+								<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #069094;">
+										<div class="card-header">
+											<h5  class="card-title">3rd Position ({{i.roll3}})</h5>
+											
+										</div>
+										<div class="card-body" style="height: 100px">
+										<h6>Name - {{i.name3}}</h6>
+										<h6>Father - {{i.fname3}}</h6>
+										<h6>Percentage/CGPA - {{i.percent3}}</h6>							
+
+										</div>
+							 
+								</div>
+							</a>
+							</div>
+						</div>
+
+
+
+
+					</div>
+
+					{% endfor %}
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+
+</div>
+
+	{% endfor %}
+
+
+
+
+	
+</div>
+
+
+
+
+
+
+
+
+<h2>Home</h2>
+<a href="../updateStudent">UpdateStudent</a><br>
+<a href="../updateMarks">UpdateMarks</a>
+
+
+
+{%  endblock    %}
+

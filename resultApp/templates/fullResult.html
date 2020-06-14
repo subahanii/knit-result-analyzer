@@ -1,0 +1,230 @@
+{%    extends 'main.html'    %}
+
+
+{%  block content  %}
+
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;">
+				<div class="card-header">
+					<h5  class="card-title">Check Marks with roll number or name</h5>
+					
+				</div>
+				<div class="card-body" >
+				<form class="form-inline" method="post" action="../fullResult">
+				 	{% csrf_token %}
+				 
+				  <div class="form-group mx-sm-3 mb-2" style="width: 75%">
+				    
+				    <input type="number" class="form-control" value='{{studentDetail.roll}}' id="inputPassword2" name="rollOrName" placeholder="Enter roll number or name....!" style="width: 100%">
+				  </div>
+				  <button type="submit" class="btn btn-primary mb-2">Check Result</button>
+				</form>
+				<p style="color: red">{{msg}}</p>
+				
+
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+
+<div class="row">
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;height: 600px">
+				<div class="card-header">
+					<h5  class="card-title">Details: {{studentDetail.roll}}</h5>
+					
+				</div>
+				<div class="card-body" >
+		
+				<div class="card" style="width: 100%; margin-top: 100px">
+				  <ul class="list-group list-group-flush" style="color:#1e5f61">
+				  
+				    <li class="list-group-item"><h5 style="text-align: center;">{{studentDetail.name}}</h5></li>
+				    <li class="list-group-item">Father Name:{{studentDetail.fname}}</li>
+				    <li class="list-group-item">Branch:{{studentDetail.course}}</li>
+				    <li class="list-group-item"><h5 >Over all Rank: {{rank}}</h5></li>
+				    <li class="list-group-item"><h5 style="text-align: center;">Total Percent/CGPA: {{percent}}</h5></li>
+				  </ul>
+				</div>
+			
+
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	
+	<div class="col">
+		<div class="col-md-12">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;">
+				<div class="card-header">
+					<h5  class="card-title">Pie Chart: {{studentDetail.roll}}</h5>
+					
+				</div>
+				<div class="card-body" >
+		
+				<div class="card" style="width: 100%;">
+				  {% include 'totalPie.html'  %}
+
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	
+</div>
+</div>
+
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;">
+				<div class="card-header">
+					<h5  class="card-title">Graph</h5>
+
+					
+				</div>
+				<div class="card-body"  >
+					{%  include 'lineGraph.html' %}
+
+					<span style="color: red;font-size: 30px">* </span><span>single semester mark is multiplied by 2 (only 2020 batch) </span>
+				
+				 
+				</div>
+			
+
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+
+
+<div class="row" >
+	
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-pending" style="background: cadetblue;cursor: pointer;">
+				<div class="card-header" >
+					<h5  class="card-title">Current Status</h5>
+					
+				</div>
+				<div class="card-body" id="myDIV" >
+					
+					<table class="table table-sm">
+						<tr class="table" style="background: #034a54">
+					
+							<th>Semester</th>
+							<th>Obtain Marks</th>
+							<th>Max Marks</th>
+							<th>Status</th>
+							<th>Year</th>
+
+						
+							
+						</tr>
+
+						{% for i in allSem %}
+						<tr>
+						
+							<td>{{ i.semester }}</td>
+							<td>{{ i.obtain_marks }}</td>
+							<td>{{ i.total_marks }}</td>
+							<td>{{ i.status }}</td>
+							<td>{{ i.year_of_result }}</td>
+
+						</tr>
+
+						{% endfor %}
+
+					
+
+					</table>
+					
+				</div>
+				 
+			</div>
+			
+		</div>
+		
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row" >
+	
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-pending" style="background: #90000e;cursor: pointer;">
+				<div class="card-header" onclick= "document.getElementById('myDIV1').style.display = 'block';">
+					<h5  class="card-title">Backlog/INC Status {{totalBackLog}}</h5>
+					
+				</div>
+				<div class="card-body" id="myDIV1" style="display: none;">
+					
+					<table class="table table-sm">
+						<tr class="table" style="background: #034a54">
+				
+							<th>Semester</th>
+							<th>Obtain Marks</th>
+							<th>Paper Code</th>
+							<th>Year</th>
+
+						
+							
+						</tr>
+
+						{% for i in backlogData %}
+						<tr>
+						
+							<td>{{ i.semester }}</td>
+							<td>{{ i.obtain_marks }}</td>
+							<td>{{ i.subject_code}}</td>
+							
+							
+							<td>{{ i.year_of_result }}</td>
+
+						</tr>
+
+						{% endfor %}
+
+					
+
+					</table>
+					
+				</div>
+				 
+			</div>
+			
+		</div>
+		
+	</div>
+</div>
+
+
+
+{% endblock  %}

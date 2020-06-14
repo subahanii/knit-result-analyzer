@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Class Rank </title>
+    <link rel="stylesheet" href="{%  static 'css/pdfCss.css' %}" media="all" />
+  </head>
+  <body>
+    <header class="clearfix" style="margin: 0px">
+      <div id="logo">
+        <img src="{% static 'images/KNITlogo.png' %}">
+      </div>
+      <div id="company">
+        <h1 class="name" style="text-align: center;margin: 0px">Kamla Nehru Institute of Technology, Sultanpur&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp<span style="font-size: 7px;">visit :<a href="http://knitresult.ml/" >knitresult.ml</a></span></h1>
+        <!-- <div style="text-align: center;margin-bottom: 0;">Sultanpur, UP, India 228118</div> -->
+        
+        <!-- <div><a href="mailto:company@example.com">company@example.com</a></div> -->
+      </div>
+      </div>
+    </header>
+  
+    <main>
+      <div id="details" class="clearfix">
+        <div id="client">
+          <!-- <div class="to">INVOICE TO:</div> -->
+          <h2 class="name" style="text-align: center;color: red;margin: 0px">Class Rank list </h2>
+         
+          <table border="0" cellspacing="0" cellpadding="1" >
+
+	        <thead>
+	          <tr style="font-size: 7px">
+	            <td >Batch - {{batch}} </td>
+	            <td >Branch - {{branch}}</td>
+	            <td >Year/Semester - {{year}}</td>
+	            <td >Result Updated on : {{updateDate}}</td>
+	            <td >Print Date : {{printDate}}</td>
+	            
+	            <!-- <th class="total">TOTAL</th> -->
+	          </tr>
+	        </thead>
+    	</table>
+         
+           </div>
+       <!--  <div id="invoice">
+          <h1>INVOICE 3-2-1</h1>
+          <div class="date">Due Date: 30/06/2014</div>
+        </div> -->
+      </div>
+      <table border="1" cellspacing="0" cellpadding="1">
+        <thead>
+          <tr >
+            <th >Rank</th>
+            <th >Roll</th>
+            <th >Name</th>
+            <th >Percentage/CGPA</th>
+            <!-- <th class="total">TOTAL</th> -->
+          </tr>
+        </thead>
+        <tbody style="text-align: center; font-size: 7px">
+        {% for i in marksWithDetailRnk %}
+          <tr>
+            <td >{{i.rank}}</td>
+            <td >{{i.roll}}</td>
+            <td >{{i.name}}</td>
+            <td >{{i.mark}}</td>
+           <!--  <td class="total">$1,200.00</td> -->
+          </tr>
+        {% endfor %}  
+        
+        </tbody>
+       
+      </table>
+     
+      <div id="notices">
+        <div style="font-size: 5px">NOTE: Rank maybe differ, its not official. Any query lets come into inbox <a href="mailto:subahani98@gmail.com">subahani98@gmail.com .</a></div>
+        <div style="font-size: 5px">For modification or contribution fork Github Repo :<a href="https://github.com/subahanii/knit-result-analyzer">@subahanii/knit-result-analyzer</a></div>
+        </div>
+    </main>
+    <footer>
+      </footer>
+  </body>
+</html>

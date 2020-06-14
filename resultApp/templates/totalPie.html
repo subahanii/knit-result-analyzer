@@ -1,0 +1,59 @@
+
+<script>
+window.onload = function ()  {
+	var confirmedData = {{pieData|safe}}; 
+
+var chart = new CanvasJS.Chart("chartContainer1", {
+	exportEnabled: true,
+	animationEnabled: true,
+	title:{
+		text: "All Marks with semester"
+	},
+	legend:{
+		cursor: "pointer",
+		//itemclick: explodePie1
+	},
+	data: [{
+		type: "pie",
+		radius:  "100%", 
+		showInLegend: true,
+		toolTipContent: "{name}: <strong>{y}</strong>",
+		indexLabel: "{name} - {y}",
+		dataPoints: confirmedData
+		// dataPoints: [
+		// 	{ y: 26, name: "School Aid", exploded: true },
+		// 	{ y: 20, name: "Medical Aid" },
+		// 	{ y: 5, name: "Debt/Capital" },
+		// 	{ y: 3, name: "Elected Officials" },
+		// 	{ y: 7, name: "University" },
+		// 	{ y: 17, name: "Executive" },
+		// 	{ y: 22, name: "Other Local Assistance"}
+		// ]
+	}]
+});
+chart.render();
+
+
+lineGraph()
+areaChart()
+
+
+}
+
+function explodePie1 (e) {
+	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+	e.chart.render();
+
+}
+
+
+
+</script>
+</head>
+<body>
+<div id="chartContainer1" style="height: 500px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

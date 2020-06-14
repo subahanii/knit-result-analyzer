@@ -1,0 +1,321 @@
+{%  extends 'main.html'   %}
+
+
+{% block content %}
+
+<script>
+function rankChartFunc(){
+	
+	var sortedRankData = {{sortedRankData|safe}}; 
+	var chart = new CanvasJS.Chart("ClassRank", {
+			width:2720,
+
+			zoomEnabled: true,
+      		zoomType: "xy",
+      		dataPointMaxWidth: 25,
+      		dataPointMinWidth: 2,
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "Class Rank"
+	},
+	axisY: {
+		title: "Marks"
+	},
+	axisX: {
+        labelFontSize: 15,
+        labelAngle: 70
+            },
+
+	data: [{        
+			 type: "column",
+	         indexLabel: " {y}",
+	         indexLabelPlacement: "outside", 
+	         //indexLabelBackgroundColor: "LightBlue", 
+	         indexLabelColor: "Red", 
+	         indexLabelOrientation: "vertical",
+	         click: onClick,
+		
+		showInLegend: true, 
+		legendMarkerColor: "grey",
+		legendText: "Rank wise",
+		dataPoints: sortedRankData
+	
+	}]
+});
+chart.render();
+
+
+function onClick(e) {
+		//alert(  e.dataSeries.type + ", dataPoint { x:" + e.dataPoint.label + ", y: "+ e.dataPoint.y + " }" );
+		//location.replace("../fullResult/"+e.dataPoint.label);
+		window.open("../fullResult/"+e.dataPoint.label, "_blank");
+	}
+
+
+}
+
+window.onload = function () {
+	
+var rankdata = {{rankData|safe}}; 
+//var sortedRankData = {{sortedRankData|safe}}; 
+var chart = new CanvasJS.Chart("AllMark", {
+	width:2720,
+
+	zoomEnabled: true,
+	zoomType: "xy",
+	dataPointMaxWidth: 25,
+	dataPointMinWidth: 2,
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "Class Marks"
+	},
+	axisY: {
+		title: "Marks"
+	},
+	axisX: {
+        labelFontSize: 15,
+        labelAngle: 70
+            },
+
+	data: [{      
+	 type: "column",
+     indexLabel: " {y}",
+     indexLabelPlacement: "outside", 
+     //indexLabelBackgroundColor: "LightBlue", 
+     indexLabelColor: "Red", 
+     indexLabelOrientation: "vertical",
+     click: onClick,  
+		 
+		showInLegend: true, 
+		legendMarkerColor: "grey",
+		legendText: "Roll number wise",
+		dataPoints: rankdata
+	
+	}]
+});
+chart.render();
+
+function onClick(e) {
+		//alert(  e.dataSeries.type + ", dataPoint { x:" + e.dataPoint.label + ", y: "+ e.dataPoint.y + " }" );
+		//location.replace("../fullResult/"+e.dataPoint.label);
+		window.open("../fullResult/"+e.dataPoint.label, "_blank");
+	}
+
+rankChartFunc()
+}
+</script>
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;">
+				<div class="card-header">
+					<h5  class="card-title">See Class Rank</h5>
+					
+				</div>
+				<div class="card-body" >
+				<form class="form-inline" method="post" action="../classRank">
+				 	{% csrf_token %}
+				 
+				  <div class="form-group mx-sm-3 mb-2" style="width: 25%">
+				 
+				    <select class="form-control" name="batch"  required >
+				    	<option value="">---SELECT Batch---</option>
+				    	<option value="2020">Batch 2020</option>
+				    	<option value="2021">Batch 2021</option>
+				    	<option value="2022">Batch 2022</option>
+				    	<option value="2023">Batch 2023</option>
+				    </select>
+				  </div>
+
+				  <div class="form-group mx-sm-3 mb-2" style="width: 25%">
+				 
+				    <select class="form-control" name="branch" required>
+				    	<option value="">---SELECT Branch---</option>
+				    	<option value="CE">CIVIL Engg.</option>
+				    	<option value="CSE">COMPUTER Engg.</option>
+				    	<option value="EL">ELECTRONIC Engg.</option>
+				    	<option value="EE">ELECTRICAL Engg.</option>
+				    	<option value="ME">MACHENICAL Engg.</option>
+				    	<option value="IT">INFORMATION Engg.</option>
+				    </select>
+				  </div>
+
+				  
+				  <div class="form-group mx-sm-3 mb-2" style="width: 25%">
+				 
+				    <select class="form-control" name="year" required>
+				    	<option value="">---SELECT Year---</option>
+				    	<option value="1 - 2">1st Year</option>
+				    	<option value="3 - 4">2ed Year</option>
+				    	<option value="5 - 6">3rd Year</option>
+				    	<option value="7 - 8">Final Year</option>
+				    </select>
+				  </div>
+
+				  
+				  <button type="submit" class="btn btn-primary mb-2">Check Result</button>
+				</form>
+				<h5 style="color: red">{{msg}}</h5>
+				
+
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;">
+				<div class="card-header">
+					<h5  class="card-title">Class Details
+						<span style="float: right;">
+							
+							<a href="../pdf/{{batch}}/{{branch_code}}/{{year}}"><button type="submit" class="btn btn-danger">Download PDF</button></a>
+							
+						</span>
+					</h5>
+					
+				</div>
+				<div class="card-body" >
+				  <ul class="list-group list-group-flush" style="color:#1e5f61">
+				  
+				    <li class="list-group-item"><h5 style="text-align: center;">{{branch}}</h5></li>
+				    <li class="list-group-item"><h5>Batch:{{batch}}</h5></li>
+				    <li class="list-group-item"><h5>Year/Semester:{{year}}</h5></li>
+				    <li class="list-group-item"><h5 style="">Total Student: {{totalStudent}}</h5></li>
+				    <li class="list-group-item"><h5 style="color: red">Total Backlog/INC/PCP: {{totalBacklog}}</h5></li>
+				  </ul>
+				
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;">
+				<div class="card-header">
+					<h5  class="card-title">Class Rank</h5>
+					
+				</div>
+				<div class="card-body" style="overflow: scroll;" >
+						<div id="ClassRank" style="height: 600px; width: 100%;"></div>
+				
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;">
+				<div class="card-header">
+					<h5  class="card-title">Class Marks</h5>
+					
+				</div>
+				<div class="card-body" style="overflow: scroll;">
+						<div id="AllMark" style="height: 500px; width: 100%;"></div>
+				
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-cetnter text-white mb-3" id="orders-delivered" style="background: #1e5f61;">
+				<div class="card-header">
+					<h5  class="card-title">Class Marks with name</h5>
+					
+				</div>
+				<div class="card-body" >
+						<table class="table table-sm">
+						<tr class="table-info">
+							<th>S.No</th>
+							<th>Roll No.</th>
+							<th>Name</th>
+							<th>Marks</th>
+							<th>Rank</th>
+							<th>More</th>
+							
+						</tr>
+
+						{% for i in marksWithDetail %}
+
+						{%  if i.status  %}
+							<tr class="table-danger">
+								
+								  <td>{{ i.sno }}</td> 														
+								  <td>{{ i.roll }}</td> 														
+								  <td>{{ i.name }}</td> 														
+								  <td>{{ i.mark }}</td> 														
+								  <td>{{ i.rank }}</td> 														
+								  <td><a href="../fullResult/{{i.roll}}">View</a></td> 														
+							
+							</tr>
+						{% else %}
+							<tr>
+								
+								  <td>{{ i.sno }}</td> 														
+								  <td>{{ i.roll }}</td> 														
+								  <td>{{ i.name }}</td> 														
+								  <td>{{ i.mark }}</td> 														
+								  <td>{{ i.rank }}</td> 														
+								  <td><a href="../fullResult/{{i.roll}}">View</a></td> 														
+							
+							</tr>
+						{% endif  %}
+
+						{% endfor %}
+
+					
+					</table>
+					
+				
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+{% endblock  %}
