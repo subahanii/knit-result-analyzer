@@ -17,11 +17,7 @@ Mobile             | Laptop
 :-------------------------:|:-------------------------:
 <img src="https://github.com/subahanii/knit-result-analyzer/blob/master/DataBase/covid19%20edited.gif" />  |  <img src="https://github.com/subahanii/knit-result-analyzer/blob/master/DataBase/first_edit_1.gif" height='400' />
 
-### Site Facilities
-1. Showing state wise data .
-2. How many cases increased every day .
-3. How many people are tested.
-4. Showing test data every day.
+
  ### REST API:
  Coming soon.
 
