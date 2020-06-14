@@ -11,11 +11,27 @@
 
 ##### Website Link-[knitresult.ml](http://knitresult.ml) .
 
+## Intro:
+###### Hey KNITians , Now we have another portal( not official)to see our Btech semester results.
+###### Here you can see your result in very convenient way against our *KNIT* official site. Of course all data coming here from KNIT official website.
+###### You can see here how you are growing,compare marks with your classmates, which subject you have backlog, what is your overall rank in class ,top 3 students in each branch and many more .
+
+###### If you want to dowload pdf of class rank for any additional purpose, you can easily download from here.
+
+### Note:
+You are most welcome specially our juniors.
+I make it for learning purpose if someone want to enhance it and make more useful for coming juniors.
+For enhance come at github using given link and fork it.
+
+### API:
+For different platform like- Android, Desktop and other its API will provide if needed.
+
+
 ### Sreenshots
 
 Mobile             | Laptop
 :-------------------------:|:-------------------------:
-<img src="https://github.com/subahanii/knit-result-analyzer/blob/master/DataBase/covid19%20edited.gif" />  |  <img src="https://github.com/subahanii/knit-result-analyzer/blob/master/DataBase/first_edit_1.gif" height='400' />
+<img src="https://github.com/subahanii/knit-result-analyzer/blob/master/DataBase/covid19%20edited.gif" />  |  <img src="https://github.com/subahanii/knit-result-analyzer/blob/master/knitresult.gif" height='500' width='900' />
 
 
  ### REST API:
